@@ -31,5 +31,4 @@ public class SpawnDrop : MonoBehaviour
         effect.Play();
         Destroy(drop, 1.2f);
     }
-
 }

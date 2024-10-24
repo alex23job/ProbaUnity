@@ -9,11 +9,16 @@ public class UI_Control : MonoBehaviour
     [SerializeField] private GameObject infoPanel;
     [SerializeField] private Text txtInfo;
 
+    [SerializeField] private Text txtTime;
+    [SerializeField] private Text txtHP;
+    [SerializeField] private Image imgHP;
+
     [SerializeField] private Button[] itemButtons;
     [SerializeField] private Inventory inventory;
     [SerializeField] private GameObject inventoryPanel;
 
     [SerializeField] private GameObject finishPanel;
+    [SerializeField] private GameObject lossPanel;
 
     // Start is called before the first frame update
     void Start()
@@ -63,5 +68,21 @@ public class UI_Control : MonoBehaviour
     public void LoadMenuScene()
     {
         SceneManager.LoadScene("MenuScene");
+    }
+
+    public void ViewLossPanel()
+    {
+        lossPanel.SetActive(true);
+    }
+
+    public void ViewHP(int hp, int maxHp)
+    {
+        txtHP.text = $"HP:{hp}";
+        imgHP.fillAmount = (float)hp / (float)maxHp;
+    }
+
+    public void ViewTime(int second)
+    {
+        txtTime.text = $"{second / 60:D02}:{second % 60:D02}";
     }
 }
