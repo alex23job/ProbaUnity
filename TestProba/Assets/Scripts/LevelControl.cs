@@ -10,8 +10,13 @@ public class LevelControl : MonoBehaviour
     [SerializeField] private KeyTrigger keyControl;
     [SerializeField] private DoorTrigger doorControl;
     [SerializeField] private DebrisTrigger debrisControl;
+    [SerializeField] private DirtTrigger dirtControl;
+
+    [SerializeField] private TakingDamage td;
 
     private int currentLocation = -1;
+    private float timer = 1f;
+    private int second = 300;
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +27,13 @@ public class LevelControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (timer > 0) timer -= Time.deltaTime;
+        else
+        {
+            timer = 1f;
+            second--;
+            ui_control.ViewTime(second);
+        }
     }
 
     public void ViewHelp(string strHelp, bool isView = true)
@@ -70,6 +81,12 @@ public class LevelControl : MonoBehaviour
                         }
                         break;
                     case 3:
+                        if (ci.ID == 5 && ci.Count == 2)
+                        {
+                            dirtControl.SetBoard();
+                            ci.ChangeCount(-2);
+                            td.PlayerSetBoard();
+                        }
                         break;
                     case 4:
                         break;
@@ -81,5 +98,15 @@ public class LevelControl : MonoBehaviour
     public void FinishLevel()
     {
         ui_control.ViewFinishLevel();
+    }
+
+    public void PlayerKilled()
+    {
+        ui_control.ViewLossPanel();
+    }
+
+    public void ViewHP(int hp, int maxHp)
+    {
+        ui_control.ViewHP(hp, maxHp);
     }
 }
