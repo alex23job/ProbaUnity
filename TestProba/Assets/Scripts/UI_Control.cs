@@ -20,6 +20,12 @@ public class UI_Control : MonoBehaviour
     [SerializeField] private GameObject finishPanel;
     [SerializeField] private GameObject lossPanel;
 
+    [SerializeField] private Image invFoneImg;
+
+    private float timer = 0.25f;
+    private int countTimer = 0;
+    private bool isReciveInventory = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,26 @@ public class UI_Control : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q)) LoadMenuScene();
         if (Input.GetKeyDown(KeyCode.R)) Restart();
         if (Input.GetKeyDown(KeyCode.I)) ViewInventory();
+        if (isReciveInventory)
+        {
+            if (timer > 0) timer -= Time.deltaTime;
+            else
+            {
+                timer = 0.25f;
+                countTimer++;
+                invFoneImg.gameObject.SetActive(countTimer % 2 == 0);
+                if (countTimer > 12)
+                {
+                    isReciveInventory = false;
+                    countTimer = 0;
+                }
+            }
+        }
+    }
+
+    public void ViewReciveInventory()
+    {
+        isReciveInventory = true;
     }
 
     public void ViewInfo(string str, bool isView = true)

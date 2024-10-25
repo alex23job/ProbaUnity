@@ -7,6 +7,7 @@ public class DoorTrigger : MonoBehaviour
     [SerializeField] private LevelControl lc;
 
     private bool isKey = false;
+    private bool isLog = false;
     private string helpNoKey = "Найдите ключ чтобы покинуть подземелье !";
 
     // Start is called before the first frame update
@@ -27,7 +28,7 @@ public class DoorTrigger : MonoBehaviour
         {
             if (isKey)
             {
-                if (lc != null) lc.FinishLevel();
+                if (lc != null && isLog) lc.FinishLevel();
             }
             else
             {
@@ -54,5 +55,10 @@ public class DoorTrigger : MonoBehaviour
     public void SetKey()
     {
         isKey = true;
+    }
+
+    public void SetLog()
+    {
+        isLog = true;
     }
 }

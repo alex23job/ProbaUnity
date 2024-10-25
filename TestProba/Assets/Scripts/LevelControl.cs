@@ -11,6 +11,7 @@ public class LevelControl : MonoBehaviour
     [SerializeField] private DoorTrigger doorControl;
     [SerializeField] private DebrisTrigger debrisControl;
     [SerializeField] private DirtTrigger dirtControl;
+    [SerializeField] private LampTrigger lampTrigger;
 
     [SerializeField] private TakingDamage td;
 
@@ -48,6 +49,19 @@ public class LevelControl : MonoBehaviour
         {   //  получен ключ
             doorControl.SetKey();
         }
+        if (item.ID == 3)
+        {   //  получен дневник
+            doorControl.SetLog();
+        }
+        if (item.ID == 4)
+        {   //  взяли бутыль с керосином
+            lampTrigger.SetKerosine();
+        }
+        if (item.ID == 6)
+        {   //  взяли спички
+            lampTrigger.SetMatches();
+        }
+        ui_control.ViewReciveInventory();
     }
 
     public void SelectLocation(int numLocation)
@@ -89,6 +103,14 @@ public class LevelControl : MonoBehaviour
                         }
                         break;
                     case 4:
+                        if (ci.ID == 4)
+                        {
+                            lampTrigger.SetFill();
+                        }
+                        if (ci.ID == 6)
+                        {
+                            lampTrigger.SetFire();
+                        }
                         break;
                 }
             }
