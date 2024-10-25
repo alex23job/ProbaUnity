@@ -270,7 +270,11 @@ MonoBehaviour:
   speed: 5
   piskDelay: 2
   pisk: {fileID: 8300000, guid: cf97f08e100057044836a41175ecc311, type: 3}
+<<<<<<< HEAD
   wing: {fileID: 8300000, guid: 6b68a348461497c43a7e735b31684343, type: 3}
+=======
+  wing: {fileID: 8300000, guid: f5461a55c565958459a76e6034ba3509, type: 3}
+>>>>>>> c370533cebd4cd3cbf580a37a8dd0a4fa6e374fd
 --- !u!82 &-3021531393113431372
 AudioSource:
   m_ObjectHideFlags: 0
