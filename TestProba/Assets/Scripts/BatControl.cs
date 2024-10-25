@@ -67,10 +67,15 @@ public class BatControl : MonoBehaviour
         {
             if (isFlight)
             {
+                transform.localScale = new Vector3(1f, 1f, 1f);
                 effect.clip = wing;
                 effect.Play();
             }
-            else effect.Stop();
+            else
+            {
+                effect.Stop();
+                transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            }
         }
         if (anim != null)
         {
